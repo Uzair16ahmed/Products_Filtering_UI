@@ -170,18 +170,18 @@ function filterProducts() {
 
     // loop over products and check for matches
     productsElements.forEach((productElement, index) => {
-    const product = products[index];
-    
-    // check to see if the product matches the search or the checked categories
+        const product = products[index];
+        
+        // check to see if the product matches the search or the checked categories
+    /* If searchTerm is an empty string, then matchesSearchTerm will be true for any product name, as an empty string is always considered to be included in any string. */
+        const matchesSearchTerm = product.name.toLowerCase().includes(searchTerm);
+        const isInCheckedCategory = checkedCategories.length === 0 || checkedCategories.includes(product.category);
 
-    const matchesSearchTerm = product.name.toLowerCase().includes(searchTerm);
-    const isInCheckedCategory = checkedCategories.length == 0 || checkedCategories.includes(product.category);
-
-    // show or hide product based on matches
-    if (matchesSearchTerm && isInCheckedCategory) {
-        productElement.classList.remove('hidden');
-    } else  {
-        productElement.classList.add('hidden');
-    }
+        // show or hide product based on matches
+        if (matchesSearchTerm && isInCheckedCategory) {
+            productElement.classList.remove('hidden');
+        } else  {
+            productElement.classList.add('hidden');
+        }
     });
 }
