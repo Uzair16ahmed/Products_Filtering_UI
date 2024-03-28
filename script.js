@@ -90,6 +90,10 @@ const products = [
   // Init product element array
   const productsElements = [];
 
+  // Event Listeners for filtering
+  filtersContainer.addEventListener('change', filterProducts);
+  searchInput.addEventListener('input', filterProducts);
+
   // Loop over products and create an element
   products.forEach((product) => {
     
