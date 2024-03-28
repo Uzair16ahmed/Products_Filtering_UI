@@ -77,7 +77,7 @@ const products = [
   // Select DOM Elements
 
   const productsWrapper = document.getElementById('products-wrapper');
-  const checkboxes = document.querySelectorAll('check');
+  const checkboxes = document.querySelectorAll('.check');
   const filtersContainer = document.getElementById('filters-container');
   const searchInput = document.getElementById('search');
   const cartCount = document.getElementById('cart-count');
@@ -156,4 +156,32 @@ function updateCart(e) {
     // Update cart item count
 
     cartCount.innerText = cartItemCount.toString();
+}
+
+
+// filter products by checkboxes and search input
+function filterProducts() {
+    // Get search term
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    // Get checked categories
+    const checkedCategories = Array.from(checkboxes).filter(
+        (check) => check.checked
+    ).map((check) => check.id);
+
+    // loop over products and check for matches
+    productsElements.forEach((productElement, index) => {
+    const product = products[index];
+    
+    // check to see if the product matches the search or the checked categories
+
+    const matchesSearchTerm = product.name.toLowerCase().includes(searchTerm);
+    const isInCheckedCategory = checkedCategories.length == 0 || checkedCategories.includes(product.category);
+
+    // show or hide product based on matches
+    if (matchesSearchTerm && isInCheckedCategory) {
+        productElement.classList.remove('hidden');
+    } else  {
+        productElement.classList.add('hidden');
+    }
+    });
 }
