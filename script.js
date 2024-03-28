@@ -92,6 +92,16 @@ const products = [
 
   // Loop over products and create an element
   products.forEach((product) => {
+    
+    const productElement = createProductElement(product);
+
+    productsElements.push(productElement);
+    productsWrapper.appendChild(productElement)
+});
+
+// Create product Element
+
+function createProductElement(product) {
     const productElement = document.createElement('div');
 
     productElement.className = 'item space-y-2';
@@ -111,6 +121,9 @@ const products = [
                 <strong>${product.price.toLocaleString()}</strong>
                 `;
 
-    productsElements.push(productElement);
-    productsWrapper.appendChild(productElement)
-});
+    productElement.querySelector('status').addEventListener('click', updateCart);
+
+    return productElement;
+}
+
+// Add or remove item cart
